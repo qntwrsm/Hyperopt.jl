@@ -118,7 +118,7 @@ function hyperband(ho::Hyperoptimizer{Hyperband}; threads=false)
     
     B = (smax + 1)*R # B is budget
     
-    p = Progress(smax+1, 1, "Hyperband")
+    # p = Progress(smax+1, 1, "Hyperband")
     for s in smax:-1:0
         n = ceil(Int, (B/R)*((η^s)/(s+1)))
         r = R / (η^s)
@@ -126,7 +126,7 @@ function hyperband(ho::Hyperoptimizer{Hyperband}; threads=false)
         if minᵢ[1] < hb.minimum[1]
             hb.minimum = minᵢ
         end
-        ProgressMeter.next!(p; showvalues = [("bracket (of $(smax+1))",smax-s+1), ("minimum", hb.minimum[1]), ("with resources", hb.minimum[2]), ("minizer", hb.minimum[3])])
+        # ProgressMeter.next!(p; showvalues = [("bracket (of $(smax+1))",smax-s+1), ("minimum", hb.minimum[1]), ("with resources", hb.minimum[2]), ("minizer", hb.minimum[3])])
     end
     return hb.minimum
 end
